@@ -45,6 +45,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
           floating: true,
           flexibleSpace: FlexibleSpaceBar(
             title: CustomAppbar(),
+
           ),
         ),
         SliverList(
@@ -81,6 +82,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                   ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
                 }),
             const SizedBox(height: 10)
+
           ]);
         }, childCount: 1)),
     ]);
