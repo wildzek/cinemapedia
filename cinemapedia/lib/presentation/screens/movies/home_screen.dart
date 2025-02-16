@@ -44,53 +44,52 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     //if (nowPlayingMovies.length == 0) return CircularProgressIndicator();
 
     final moviesSideshow = ref.watch(moviesSlideshowProvider);
-    return CustomScrollView(
-      slivers: [
 
-        const SliverAppBar(
-          floating: true,
-          flexibleSpace: FlexibleSpaceBar(
-            title: CustomAppbar(),
+    return const FullScreenLoader();
 
-          ),
+    return CustomScrollView(slivers: [
+      const SliverAppBar(
+        floating: true,
+        flexibleSpace: FlexibleSpaceBar(
+          title: CustomAppbar(),
         ),
-        SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-          return Column(children: [
-            //const CustomAppbar(),
-            MoviesSlideshow(movies: moviesSideshow),
-            MovieHorizontalListview(
-                movies: nowPlayingMovies,
-                title: 'En cines',
-                subtitle: 'Lunes 20',
-                loadNextPage: () {
-                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-                }),
-            MovieHorizontalListview(
-                movies: upComingMovies,
-                title: 'Próximamente',
-                subtitle: 'En este mes',
-                loadNextPage: () {
-                  ref.read(upComingMoviesProvider.notifier).loadNextPage();
-                }),
-            MovieHorizontalListview(
-                movies: popularMovies,
-                title: 'Populares',
-                subtitle: 'Tendencias',
-                loadNextPage: () {
-                  ref.read(popularMoviesProvider.notifier).loadNextPage();
-                }),
-            MovieHorizontalListview(
-                movies: topRatedMovies,
-                title: 'Mejor calificadas',
-                subtitle: 'Desde siempre',
-                loadNextPage: () {
-                  ref.read(topRatedMoviesProvider.notifier).loadNextPage();
-                }),
-            const SizedBox(height: 10)
-
-          ]);
-        }, childCount: 1)),
+      ),
+      SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+        return Column(children: [
+          //const CustomAppbar(),
+          MoviesSlideshow(movies: moviesSideshow),
+          MovieHorizontalListview(
+              movies: nowPlayingMovies,
+              title: 'En cines',
+              subtitle: 'Lunes 20',
+              loadNextPage: () {
+                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+              }),
+          MovieHorizontalListview(
+              movies: upComingMovies,
+              title: 'Próximamente',
+              subtitle: 'En este mes',
+              loadNextPage: () {
+                ref.read(upComingMoviesProvider.notifier).loadNextPage();
+              }),
+          MovieHorizontalListview(
+              movies: popularMovies,
+              title: 'Populares',
+              subtitle: 'Tendencias',
+              loadNextPage: () {
+                ref.read(popularMoviesProvider.notifier).loadNextPage();
+              }),
+          MovieHorizontalListview(
+              movies: topRatedMovies,
+              title: 'Mejor calificadas',
+              subtitle: 'Desde siempre',
+              loadNextPage: () {
+                ref.read(topRatedMoviesProvider.notifier).loadNextPage();
+              }),
+          const SizedBox(height: 10)
+        ]);
+      }, childCount: 1)),
     ]);
   }
 }
